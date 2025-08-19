@@ -1,0 +1,23 @@
+name: Build CRX3 EXE
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+      - name: Build
+        run: |
+          cd cmd/crx3
+          go build -o crx3.exe
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: crx3-windows
+          path: cmd/crx3/crx3.exe
