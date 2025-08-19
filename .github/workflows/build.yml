@@ -8,15 +8,18 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
           go-version: '1.22'
-      - name: Build
+
+      - name: Build EXE
         run: |
           cd cmd/crx3
           go build -o crx3.exe
-      - name: Upload artifact
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: crx3-windows
